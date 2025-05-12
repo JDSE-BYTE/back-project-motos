@@ -1,0 +1,63 @@
+POST http://localhost:3000/usuario HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre":"emelina",
+    "apellido": "jaramillo nuevo",
+    "contraseña": "elia321. nuevo"
+}
+
+
+###
+GET  http://localhost:3000/usuario HTTP/1.1
+
+
+###
+
+GET  http://localhost:3000/usuario/5 HTTP/1.1
+
+###
+DELETE  http://localhost:3000/usuario/10 HTTP/1.1
+
+
+###
+PATCH http://localhost:3000/usuario/10
+Content-Type: application/json
+
+{
+    "nombre": "JOSE ACTUALIZADO",
+    "apellido": "JOSE ACTUALIZADO",
+    "contraseña": "JOSE ACTUALIZADO PASS"
+}
+
+
+
+###
+POST http://localhost:3000/usuario/5/departamento
+Content-Type: application/json
+
+{
+    "name":"Tecnologia",
+    "jefe":"Jefe Inmediato Elias JARAMILLO"
+}
+
+
+
+###
+GET http://localhost:3000/publicaciones
+
+
+###
+POST http://localhost:3000/publicaciones
+Content-Type: application/json
+
+{
+    "titulo": "Dios todo lo puede",
+    "contenido": "Dios es el dueño del camino",
+    "autorId": 5
+}
+
+
+
+
+
