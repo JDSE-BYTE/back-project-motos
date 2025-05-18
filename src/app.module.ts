@@ -7,6 +7,7 @@ import { UsuarioModule } from './module/usuario/usuario.module';
 import { CategoryModule } from './module/category/category.module';
 import { AuthModule } from './module/auth/auth.module';
 import { MotosModule } from './module/motos/motos.module';
+import { CarritoModule } from './module/carrito/carrito.module';
 
 
 @Module({
@@ -22,12 +23,14 @@ import { MotosModule } from './module/motos/motos.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
+      migrations: [__dirname + '/migrations/*{.ts,.js}'],
     }),
     UsuarioModule,
     CategoryModule,
     AuthModule,
-    MotosModule
+    MotosModule,
+    CarritoModule
   ],
   controllers: [AppController],
   providers: [AppService],

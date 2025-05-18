@@ -1,7 +1,8 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
-import { Rol } from 'src/common/enum/rol.enum'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn } from 'typeorm'
+import { Rol } from '../../common/enum/rol.enum'
 import { Moto } from '../motos/moto.entity'
+import { Carrito } from '../carrito/carrito.entity'
 
 
 @Entity({ name: 'user' })
@@ -36,6 +37,10 @@ export class Usuario {
 
     @OneToMany(() => Moto, (moto) => moto.usuario, { eager: true })
     motos: Moto[];
+
+    @OneToOne(() => Carrito, carrito => carrito.usuario, { cascade: true, eager: true })
+    @JoinColumn()
+    carrito: Carrito;
 }
 
 

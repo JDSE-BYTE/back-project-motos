@@ -1,5 +1,4 @@
-import { TipoMotor } from "src/common/enum/tipo-motor";
-import { Category } from "src/module/category/category.entity";
+import { TipoMotor } from "../../common/enum/tipo-motor";
 import {
   Column,
   CreateDateColumn,
@@ -10,8 +9,10 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Usuario } from "../usuario/user.entity";
-import { ECombustible } from "src/common/enum/combustible.enum";
-import { ETransmision } from "src/common/enum/trasmision.enum";
+import { ECombustible } from "../../common/enum/combustible.enum";
+import { ETransmision } from "../../common/enum/trasmision.enum";
+import { Carrito } from "../carrito/carrito.entity";
+import { Category } from "../category/category.entity";
 
 @Entity({ name: 'moto' })
 export class Moto {
@@ -67,6 +68,10 @@ export class Moto {
   @ManyToOne(() => Usuario, (usuario) => usuario.motos)
   @JoinColumn({ name: 'usuario_id' })
   usuario: Usuario;
+
+
+  @ManyToOne(() => Carrito, carrito => carrito.motos)
+  carrito: Carrito;
 
   @CreateDateColumn()
   fecha_creacion: Date;

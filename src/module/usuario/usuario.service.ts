@@ -40,10 +40,12 @@ export class UsuarioService {
     async updateUser(id: number, updateUserDto: UserDto) {
         const toUpdate = await this.userRepository.findOne({ where: { id } });
         const updated = Object.assign(toUpdate, updateUserDto);
-        return await this.userRepository.save(updated);
+        await this.userRepository.save(updated)
+        return;
     }
 
     async findByEmail(email: string) {
         return this.userRepository.findOne({ where: { correo: email } });
     }
+
 }

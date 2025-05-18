@@ -20,10 +20,37 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.email, user };
+    const payload = { username: user.email };
     return {
       access_token: this.jwtService.sign(payload),
       user
     };
   }
+
+
+  async sendResetPassword(email: string) {
+    const user = await this.usersService.findByEmail(email);
+
+    if (!user) {
+      return {
+        success: false,
+        message: 'User not found',
+      };
+    }
+
+    const token = this.jwtService.sign({ correo: user.correo });
+
+    return {
+      token,
+      success: true,
+      message: 'You can reset your password!',
+    };
+  }
+
+  async resetPassword(correo: string, newPassword: string) {
+    const user = await this.usersService.findByEmail(correo);
+    user.contraseña = newPassword;
+    return this.usersService.updateUser(user.id, user);
+  }
+
 }
