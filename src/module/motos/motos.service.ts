@@ -38,10 +38,12 @@ export class MotosService {
   }
 
   async findOne(id: number) {
-    const moto = await this.repository.findOne({ where: { id } })
-    const dataParse = moto.images.replace(/[\[\]\s]/g, '').split(',')
+    return await this.repository.findOne({ where: { id } })
+  }
 
-    return { moto, images_parseadas: dataParse };
+
+  async findByUserId(id: number) {
+    return await this.repository.find({ where: { usuario: { id } } })
   }
 
   async update(id: number, updateMotoDto: UpdateMotoDto) {

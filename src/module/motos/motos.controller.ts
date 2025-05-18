@@ -31,6 +31,14 @@ export class MotosController {
     return this.motosService.findOne(+id);
   }
 
+  
+  @Get('byuserid/:id')
+  @ApiOperation({ summary: 'Obtener una moto por el id del usuario' })
+  @ApiParam({ name: 'id', description: 'ID del usuario', type: String })
+  findByUserId(@Param('id') id: string) {
+    return this.motosService.findByUserId(+id);
+  }
+
   @Patch(':id')
   @ApiOperation({ summary: 'Actualizar una moto existente' })
   @ApiParam({ name: 'id', description: 'ID de la moto', type: String })
